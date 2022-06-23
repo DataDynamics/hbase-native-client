@@ -15,7 +15,7 @@
 # specific language governing permissions and limitations
 # under the License.
 
-## Download Boost. 
+## Download Boost.
 ## SOURCE_DIR is typically the cmake source directory
 ## BINARY_DIR is the build directory, typically 'build'
 ## Sets BOOST_ROOT, search prefix for FindBoost.
@@ -38,7 +38,8 @@ function(download_boost SOURCE_DIR BUILD_DIR BOOST_LIBS)
     "./b2 cflags='${CFLAGS}' cxxflags='${CXXFLAGS}' variant=release link=static threading=multi ${LIBS_TO_COMPILE} install")
 
   ExternalProject_Add(boost
-     URL "https://dl.bintray.com/boostorg/release/1.65.1/source/boost_1_65_1.tar.gz"
+     # URL "https://dl.bintray.com/boostorg/release/1.65.1/source/boost_1_65_1.tar.gz"
+     URL "https://boostorg.jfrog.io/artifactory/main/release/1.65.1/source/boost_1_65_1.tar.gz"
      PREFIX "${BUILD_DIR}/dependencies"
      DOWNLOAD_DIR ${BOOST_DOWNLOAD_DIR}
      BUILD_IN_SOURCE true
@@ -49,4 +50,4 @@ function(download_boost SOURCE_DIR BUILD_DIR BOOST_LIBS)
      INSTALL_COMMAND ""
   )
   set(BOOST_ROOT ${BOOST_INSTALL_DIR} PARENT_SCOPE)
-endfunction(download_boost) 
+endfunction(download_boost)
