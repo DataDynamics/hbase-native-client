@@ -58,23 +58,23 @@ std::unique_ptr<Request> RpcTestServerSerializeHandler::CreateReceivedRequest(
   std::unique_ptr<Request> result = nullptr;
 
   if (method_name == "ping") {
-    result = std::make_unique<Request>(std::make_shared<EmptyRequestProto>(),
-                                       std::make_shared<EmptyResponseProto>(), method_name);
+    result = std::make_unique<Request>(std::make_shared<test::pb::EmptyRequestProto>(),
+                                       std::make_shared<test::pb::EmptyResponseProto>(), method_name);
   } else if (method_name == "echo") {
-    result = std::make_unique<Request>(std::make_shared<EchoRequestProto>(),
-                                       std::make_shared<EchoResponseProto>(), method_name);
+    result = std::make_unique<Request>(std::make_shared<test::pb::EchoRequestProto>(),
+                                       std::make_shared<test::pb::EchoResponseProto>(), method_name);
   } else if (method_name == "error") {
-    result = std::make_unique<Request>(std::make_shared<EmptyRequestProto>(),
-                                       std::make_shared<EmptyResponseProto>(), method_name);
+    result = std::make_unique<Request>(std::make_shared<test::pb::EmptyRequestProto>(),
+                                       std::make_shared<test::pb::EmptyResponseProto>(), method_name);
   } else if (method_name == "pause") {
-    result = std::make_unique<Request>(std::make_shared<PauseRequestProto>(),
-                                       std::make_shared<EmptyResponseProto>(), method_name);
+    result = std::make_unique<Request>(std::make_shared<test::pb::PauseRequestProto>(),
+                                       std::make_shared<test::pb::EmptyResponseProto>(), method_name);
   } else if (method_name == "addr") {
-    result = std::make_unique<Request>(std::make_shared<EmptyRequestProto>(),
-                                       std::make_shared<AddrResponseProto>(), method_name);
+    result = std::make_unique<Request>(std::make_shared<test::pb::EmptyRequestProto>(),
+                                       std::make_shared<test::pb::AddrResponseProto>(), method_name);
   } else if (method_name == "socketNotOpen") {
-    result = std::make_unique<Request>(std::make_shared<EmptyRequestProto>(),
-                                       std::make_shared<EmptyResponseProto>(), method_name);
+    result = std::make_unique<Request>(std::make_shared<test::pb::EmptyRequestProto>(),
+                                       std::make_shared<test::pb::EmptyResponseProto>(), method_name);
   }
   return result;
 }

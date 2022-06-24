@@ -66,31 +66,31 @@ Future<std::unique_ptr<Response>> RpcTestService::operator()(std::unique_ptr<Req
   std::string method_name = request->method();
 
   if (method_name == "ping") {
-    auto pb_resp_msg = std::make_shared<EmptyResponseProto>();
+    auto pb_resp_msg = std::make_shared<test::pb::EmptyResponseProto>();
     response->set_resp_msg(pb_resp_msg);
     VLOG(1) << "RPC server:"
             << " ping called.";
 
   } else if (method_name == "echo") {
-    auto pb_resp_msg = std::make_shared<EchoResponseProto>();
+    auto pb_resp_msg = std::make_shared<test::pb::EchoResponseProto>();
     /* get msg from client */
-    auto pb_req_msg = std::static_pointer_cast<EchoRequestProto>(request->req_msg());
+    auto pb_req_msg = std::static_pointer_cast<test::pb::EchoRequestProto>(request->req_msg());
     pb_resp_msg->set_message(pb_req_msg->message());
     response->set_resp_msg(pb_resp_msg);
     VLOG(1) << "RPC server:"
             << " echo called, " << pb_req_msg->message();
 
   } else if (method_name == "error") {
-    auto pb_resp_msg = std::make_shared<EmptyResponseProto>();
+    auto pb_resp_msg = std::make_shared<test::pb::EmptyResponseProto>();
     response->set_resp_msg(pb_resp_msg);
     VLOG(1) << "RPC server:"
             << " error called.";
     response->set_exception(RpcTestException("server error!"));
 
   } else if (method_name == "pause") {
-    auto pb_resp_msg = std::make_shared<EmptyResponseProto>();
+    auto pb_resp_msg = std::make_shared<test::pb::EmptyResponseProto>();
     /* sleeping */
-    auto pb_req_msg = std::static_pointer_cast<PauseRequestProto>(request->req_msg());
+    auto pb_req_msg = std::static_pointer_cast<test::pb::PauseRequestProto>(request->req_msg());
     std::this_thread::sleep_for(std::chrono::milliseconds(pb_req_msg->ms()));
     response->set_resp_msg(pb_resp_msg);
     VLOG(1) << "RPC server:"
@@ -99,7 +99,7 @@ Future<std::unique_ptr<Response>> RpcTestService::operator()(std::unique_ptr<Req
   } else if (method_name == "addr") {
     // TODO:
   } else if (method_name == "socketNotOpen") {
-    auto pb_resp_msg = std::make_shared<EmptyResponseProto>();
+    auto pb_resp_msg = std::make_shared<test::pb::EmptyResponseProto>();
     response->set_resp_msg(pb_resp_msg);
   }
 
