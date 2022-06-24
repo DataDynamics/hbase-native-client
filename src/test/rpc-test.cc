@@ -104,15 +104,15 @@ TEST_F(RpcTest, Ping) {
   auto client = CreateRpcClient(conf);
 
   auto method = "ping";
-  auto request = std::make_unique<Request>(std::make_shared<EmptyRequestProto>(),
-                                           std::make_shared<EmptyResponseProto>(), method);
+  auto request = std::make_unique<Request>(std::make_shared<test::pb::EmptyRequestProto>(),
+                                           std::make_shared<test::pb::EmptyResponseProto>(), method);
 
   /* sending out request */
   client
       ->AsyncCall(server_addr->getAddressStr(), server_addr->getPort(), std::move(request),
                   hbase::security::User::defaultUser())
       .then([&](std::unique_ptr<Response> response) {
-        auto pb_resp = std::static_pointer_cast<EmptyResponseProto>(response->resp_msg());
+        auto pb_resp = std::static_pointer_cast<test::pb::EmptyResponseProto>(response->resp_msg());
         EXPECT_TRUE(pb_resp != nullptr);
         VLOG(1) << folly::sformat(FLAGS_result_format, method, "");
       })
@@ -136,9 +136,9 @@ TEST_F(RpcTest, Echo) {
 
   auto method = "echo";
   auto greetings = "hello, hbase server!";
-  auto request = std::make_unique<Request>(std::make_shared<EchoRequestProto>(),
-                                           std::make_shared<EchoResponseProto>(), method);
-  auto pb_msg = std::static_pointer_cast<EchoRequestProto>(request->req_msg());
+  auto request = std::make_unique<Request>(std::make_shared<test::pb::EchoRequestProto>(),
+                                           std::make_shared<test::pb::EchoResponseProto>(), method);
+  auto pb_msg = std::static_pointer_cast<test::pb::EchoRequestProto>(request->req_msg());
   pb_msg->set_message(greetings);
 
   /* sending out request */
@@ -146,7 +146,7 @@ TEST_F(RpcTest, Echo) {
       ->AsyncCall(server_addr->getAddressStr(), server_addr->getPort(), std::move(request),
                   hbase::security::User::defaultUser())
       .then([&](std::unique_ptr<Response> response) {
-        auto pb_resp = std::static_pointer_cast<EchoResponseProto>(response->resp_msg());
+        auto pb_resp = std::static_pointer_cast<test::pb::EchoResponseProto>(response->resp_msg());
         EXPECT_TRUE(pb_resp != nullptr);
         VLOG(1) << folly::sformat(FLAGS_result_format, method, pb_resp->message());
         EXPECT_EQ(greetings, pb_resp->message());
@@ -170,8 +170,8 @@ TEST_F(RpcTest, Error) {
   auto client = CreateRpcClient(conf);
 
   auto method = "error";
-  auto request = std::make_unique<Request>(std::make_shared<EmptyRequestProto>(),
-                                           std::make_shared<EmptyResponseProto>(), method);
+  auto request = std::make_unique<Request>(std::make_shared<test::pb::EmptyRequestProto>(),
+                                           std::make_shared<test::pb::EmptyResponseProto>(), method);
   /* sending out request */
   client
       ->AsyncCall(server_addr->getAddressStr(), server_addr->getPort(), std::move(request),
@@ -207,8 +207,8 @@ TEST_F(RpcTest, SocketNotOpen) {
   auto client = CreateRpcClient(conf);
 
   auto method = "socketNotOpen";
-  auto request = std::make_unique<Request>(std::make_shared<EmptyRequestProto>(),
-                                           std::make_shared<EmptyResponseProto>(), method);
+  auto request = std::make_unique<Request>(std::make_shared<test::pb::EmptyRequestProto>(),
+                                           std::make_shared<test::pb::EmptyResponseProto>(), method);
 
   server->stop();
   server->join();
@@ -258,9 +258,9 @@ TEST_F(RpcTest, Pause) {
       CreateRpcClient(conf, std::chrono::duration_cast<nanoseconds>(milliseconds(2 * ms)));
 
   auto method = "pause";
-  auto request = std::make_unique<Request>(std::make_shared<PauseRequestProto>(),
-                                           std::make_shared<EmptyResponseProto>(), method);
-  auto pb_msg = std::static_pointer_cast<PauseRequestProto>(request->req_msg());
+  auto request = std::make_unique<Request>(std::make_shared<test::pb::PauseRequestProto>(),
+                                           std::make_shared<test::pb::EmptyResponseProto>(), method);
+  auto pb_msg = std::static_pointer_cast<test::pb::PauseRequestProto>(request->req_msg());
 
   pb_msg->set_ms(ms);
 
@@ -269,7 +269,7 @@ TEST_F(RpcTest, Pause) {
       ->AsyncCall(server_addr->getAddressStr(), server_addr->getPort(), std::move(request),
                   hbase::security::User::defaultUser())
       .then([&](std::unique_ptr<Response> response) {
-        auto pb_resp = std::static_pointer_cast<EmptyResponseProto>(response->resp_msg());
+        auto pb_resp = std::static_pointer_cast<test::pb::EmptyResponseProto>(response->resp_msg());
         EXPECT_TRUE(pb_resp != nullptr);
         VLOG(1) << folly::sformat(FLAGS_result_format, method, "");
       })
