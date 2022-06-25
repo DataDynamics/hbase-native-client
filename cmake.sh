@@ -2,6 +2,7 @@
 
 if [ $# -lt 1 ] ; then
   echo "Usage: $0 </absolute/path/to/hbase/home>"
+  exit 1
 fi
 
 HBASE_HOME=$1
