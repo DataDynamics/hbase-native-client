@@ -192,13 +192,13 @@ std::unique_ptr<hbase::MultiResponse> ResponseConverter::GetResults(
     }
   }
 
-  if (multi_resp->has_regionstatistics()) {
-    hbase::pb::MultiRegionLoadStats stats = multi_resp->regionstatistics();
-    for (int i = 0; i < stats.region_size(); i++) {
-      multi_response->AddStatistic(stats.region(i).value(),
-                                   std::make_shared<RegionLoadStats>(stats.stat(i)));
-    }
-  }
+  // if (multi_resp->has_regionstatistics()) {
+  //   hbase::pb::MultiRegionLoadStats stats = multi_resp->regionstatistics();
+  //   for (int i = 0; i < stats.region_size(); i++) {
+  //     multi_response->AddStatistic(stats.region(i).value(),
+  //                                  std::make_shared<RegionLoadStats>(stats.stat(i)));
+  //   }
+  // }
   return multi_response;
 }
 
