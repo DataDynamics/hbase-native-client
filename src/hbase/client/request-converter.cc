@@ -155,8 +155,8 @@ void RequestConverter::SetCommonScanRequestFields(std::shared_ptr<hbase::pb::Sca
   // TODO We will change these later when we implement partial results and heartbeats, etc
   pb_msg->set_client_handles_partials(false);
   pb_msg->set_client_handles_heartbeats(false);
-  pb_msg->set_track_scan_metrics(false);
-  pb_msg->set_renew(renew);
+  // pb_msg->set_track_scan_metrics(false);
+  // pb_msg->set_renew(renew);
   // TODO: set scan limit
 }
 
