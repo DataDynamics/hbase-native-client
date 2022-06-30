@@ -226,18 +226,16 @@ include_directories(${SASL_INCLUDE_DIRS})
 include_directories(${GFLAGS_INCLUDE_DIR})
 
 ## Use the java proto files defined by the tag
-file(GLOB_RECURSE PROTO_FILES "${JAVA_HBASE_DIR}/hbase-protocol-shaded/src/main/protobuf/client/*.proto" 
-	"${JAVA_HBASE_DIR}/hbase-protocol-shaded/src/main/protobuf/rpc/*.proto" 
-	"${JAVA_HBASE_DIR}/hbase-protocol-shaded/src/main/protobuf/server/master/*.proto" 
-	"${JAVA_HBASE_DIR}/hbase-protocol-shaded/src/main/protobuf/server/io/*.proto" 
-	"${JAVA_HBASE_DIR}/hbase-protocol-shaded/src/main/protobuf/server/zookeeper/*.proto" 
-	"${JAVA_HBASE_DIR}/hbase-protocol-shaded/src/main/protobuf/server/region/*.proto" 
-	"${JAVA_HBASE_DIR}/hbase-protocol-shaded/src/main/protobuf/server/rsgroup/*.proto" 
-	"${JAVA_HBASE_DIR}/hbase-protocol-shaded/src/main/protobuf/server/*.proto" 
-	"${JAVA_HBASE_DIR}/hbase-protocol-shaded/src/main/protobuf/test/ipc/*.proto"
-	"${JAVA_HBASE_DIR}/hbase-protocol-shaded/src/main/protobuf/*.proto" )
+file(GLOB_RECURSE PROTO_FILES "${JAVA_HBASE_DIR}/hbase-protocol/src/main/protobuf/client/*.proto"
+	"${JAVA_HBASE_DIR}/hbase-protocol/src/main/protobuf/rpc/*.proto"
+	"${JAVA_HBASE_DIR}/hbase-protocol/src/main/protobuf/server/master/*.proto"
+	"${JAVA_HBASE_DIR}/hbase-protocol/src/main/protobuf/server/io/*.proto"
+	"${JAVA_HBASE_DIR}/hbase-protocol/src/main/protobuf/server/zookeeper/*.proto"
+	"${JAVA_HBASE_DIR}/hbase-protocol/src/main/protobuf/server/region/*.proto"
+	"${JAVA_HBASE_DIR}/hbase-protocol/src/main/protobuf/server/*.proto"
+	"${JAVA_HBASE_DIR}/hbase-protocol/src/main/protobuf/*.proto" )
 ### generate the protocol buffers.
-generate_protobuf_src(PROTO_SOURCES PROTO_HEADERS PROTO_HEADER_DIR "${JAVA_HBASE_DIR}/hbase-protocol-shaded/src/main/protobuf" ${PROTO_FILES})
+generate_protobuf_src(PROTO_SOURCES PROTO_HEADERS PROTO_HEADER_DIR "${JAVA_HBASE_DIR}/hbase-protocol/src/main/protobuf" ${PROTO_FILES})
 include_directories(${PROTO_HEADER_DIR})
 add_library(hbaseclient-static STATIC ${PROTO_SOURCES} ${CLIENT_SRC} ${CONNECTION_SRC} ${EXCEPTION_SRC} ${PROTO_SRC} ${SECURITY_SRC} ${SRDE_SRC} ${UTILS_SRC})
 set_target_properties(hbaseclient-static PROPERTIES LINKER_LANGUAGE CXX)

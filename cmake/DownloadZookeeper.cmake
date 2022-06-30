@@ -24,7 +24,7 @@
 function(download_zookeeper SOURCE_DIR BUILD_DIR)
   ExternalProject_Add(
       ZooKeeper
-      URL "https://archive.apache.org/dist/zookeeper/zookeeper-3.4.8/zookeeper-3.4.8.tar.gz"
+      URL "https://archive.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz"
       PREFIX "${BUILD_DIR}/dependencies"
       SOURCE_DIR "${BUILD_DIR}/dependencies/zookeeper-src"
       BINARY_DIR ${BUILD_DIR}/dependencies/zookeeper-src/src/c/
