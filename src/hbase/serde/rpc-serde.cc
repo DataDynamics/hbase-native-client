@@ -141,10 +141,10 @@ std::unique_ptr<pb::VersionInfo> RpcSerde::CreateVersionInfo() {
   std::vector<std::string> version_parts;
   boost::split(version_parts, version, boost::is_any_of("."), boost::token_compress_on);
   uint32_t major_version = 0, minor_version = 0;
-  if (version_parts.size() >= 2) {
-    version_info->set_version_major(folly::to<uint32_t>(version_parts[0]));
-    version_info->set_version_minor(folly::to<uint32_t>(version_parts[1]));
-  }
+  // if (version_parts.size() >= 2) {
+  //   version_info->set_version_major(folly::to<uint32_t>(version_parts[0]));
+  //   version_info->set_version_minor(folly::to<uint32_t>(version_parts[1]));
+  // }
 
   VLOG(1) << "Client VersionInfo:" << version_info->ShortDebugString();
   return version_info;
