@@ -382,7 +382,7 @@ class FilterFactory {
     for (auto t : timestamps) {
       data->add_timestamps(t);
     }
-    data->set_can_hint(can_hint);
+    // data->set_can_hint(can_hint);
     return std::make_unique<Filter>("org.apache.hadoop.hbase.filter.TimestampsFilter",
                                     std::move(data));
   }
