@@ -84,7 +84,7 @@ std::unique_ptr<Request> MetaUtil::MetaRequest(const TableName tn, const std::st
   // We know where to start but not where to end.
   scan->set_reversed(true);
   // Give me everything or nothing.
-  scan->set_allow_partial_results(false);
+  // scan->set_allow_partial_results(false);
 
   // Set the columns that we need
   auto info_col = scan->add_column();

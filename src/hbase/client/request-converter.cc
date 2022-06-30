@@ -63,7 +63,7 @@ std::unique_ptr<hbase::pb::Scan> RequestConverter::ToScan(const Scan &scan) {
   pb_scan->set_stop_row(scan.StopRow());
   pb_scan->set_consistency(scan.Consistency());
   pb_scan->set_max_result_size(scan.MaxResultSize());
-  pb_scan->set_allow_partial_results(scan.AllowPartialResults());
+  // pb_scan->set_allow_partial_results(scan.AllowPartialResults());
   pb_scan->set_load_column_families_on_demand(scan.LoadColumnFamiliesOnDemand());
 
   if (!scan.Timerange().IsAllTime()) {
