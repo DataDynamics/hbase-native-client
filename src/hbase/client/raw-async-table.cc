@@ -206,6 +206,7 @@ folly::Future<std::vector<folly::Try<std::shared_ptr<Result>>>> RawAsyncTable::G
     std::shared_ptr<hbase::Row> srow = std::make_shared<hbase::Get>(get);
     rows.push_back(srow);
   }
+  std::cout << "before batch" << std::endl;
   return this->Batch<std::shared_ptr<hbase::Row>, std::shared_ptr<Result>>(
       rows, connection_conf_->read_rpc_timeout());
 }
