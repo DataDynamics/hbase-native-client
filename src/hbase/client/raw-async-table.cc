@@ -224,7 +224,7 @@ folly::Future<std::vector<folly::Try<RESP>>> RawAsyncTable::Batch(
                     ->max_attempts(connection_conf_->max_retries())
                     ->start_log_errors_count(connection_conf_->start_log_errors_count())
                     ->Build();
-
+  std::cout << "before caller" << std::endl;
   return caller->Call().then([caller](auto r) { return r; });
 }
 
