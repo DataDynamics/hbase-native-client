@@ -264,6 +264,7 @@ void AsyncBatchRpcRetryingCaller<REQ, RESP>::GroupAndSend(
 
         for (uint64_t i = 0; i < loc.size(); ++i) {
           auto action = actions[i];
+          std::cout << "action[" << i << "]" << std::endl;
           if (loc[i].hasValue()) {
             auto region_loc = loc[i].value();
             // Add it to actions_by_server;
