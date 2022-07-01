@@ -10,5 +10,5 @@ mkdir build
 cd build
 cmake -D DOWNLOAD_DEPENDENCIES=ON -D HBASE_HOME=${HBASE_HOME} -D SKIP_TESTS=ON ..
 
-cd ${HBASE_HOME}
-sh hbase-common/src/saveVersion_3.0.0-alpha-3.sh 1.1.2 hbase-common/target/generated-sources
+cd ${HBASE_HOME}/hbase-common
+sh src/saveVersion_3.0.0-alpha-3.sh 1.1.2 target/generated-sources
