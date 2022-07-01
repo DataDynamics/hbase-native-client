@@ -114,12 +114,12 @@ std::shared_ptr<RegionLocation> Table::GetRegionLocation(const std::string &row)
 
 std::vector<std::shared_ptr<hbase::Result>> Table::Get(const std::vector<hbase::Get> &gets) {
   auto tresults = async_table_->Get(gets).get(operation_timeout());
-  std::cout << "gets = " << tresults << std::endl;
   std::vector<std::shared_ptr<hbase::Result>> results{};
   uint32_t num = 0;
   for (auto tresult : tresults) {
     if (tresult.hasValue()) {
       results.push_back(tresult.value());
+      std::cout << "get = " << tresult.value() << std::endl;
     } else if (tresult.hasException()) {
       LOG(ERROR) << "Caught exception:- " << tresult.exception().what() << " for "
                  << gets[num++].row();
