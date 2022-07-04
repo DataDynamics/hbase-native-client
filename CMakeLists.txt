@@ -69,7 +69,7 @@ set(BOOST_LIBS context coroutine thread system filesystem regex program_options)
 
 if (DOWNLOAD_DEPENDENCIES)
   ## we want to find the system protoc
-  download_project(PROJ Protobuf PREFIX "${PROJECT_PREFIX}" IS_AUTOGEN GIT_REPOSITORY "https://github.com/protocolbuffers/protobuf.git" GIT_TAG "3.5.1.1")
+  download_project(PROJ Protobuf PREFIX "${PROJECT_PREFIX}" IS_AUTOGEN GIT_REPOSITORY "https://github.com/protocolbuffers/protobuf.git" GIT_TAG "2.5.0")
 	  			 
   set(PROTOBUF_DIR "${Protobuf_BINARY_DIR}" CACHE STRING "" FORCE)
 	
