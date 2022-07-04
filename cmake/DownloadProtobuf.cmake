@@ -25,7 +25,7 @@ function(download_protobuf SOURCE_DIR BINARY_DIR)
 	ExternalProject_Add(
 	  Protobuf
 	  GIT_REPOSITORY "https://github.com/protocolbuffers/protobuf.git"
-	  GIT_TAG "3.5.1.1"
+	  GIT_TAG "2.5.0"
 	  BUILD_IN_SOURCE true
 	  SOURCE_DIR "${CMAKE_CURRENT_BINARY_DIR}/dependencies/protobuf-src"
 	  CONFIGURE_COMMAND ./autogen.sh
