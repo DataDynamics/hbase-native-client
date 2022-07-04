@@ -24,7 +24,7 @@
 function(download_protobuf SOURCE_DIR BINARY_DIR)
 	ExternalProject_Add(
 	  Protobuf
-	  GIT_REPOSITORY "https://github.com/protocolbuffers/protobuf.git"
+	  GIT_REPOSITORY "https://github.com/DataDynamics/protobuf.git"
 	  GIT_TAG "3.5.1.1"
 	  BUILD_IN_SOURCE true
 	  SOURCE_DIR "${CMAKE_CURRENT_BINARY_DIR}/dependencies/protobuf-src"
